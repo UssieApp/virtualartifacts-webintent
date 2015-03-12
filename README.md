@@ -77,6 +77,17 @@ Gets the Uri the app was invoked with. For example:
         }
     });
 
+### getType ###
+Gets the MIME type (as a string) from this intent, i.e..
+
+    window.plugin.webintent.getType(
+        function(mimetype) {
+            $log.info('Intent MIME type is ' + mtype); // e.g. mtype = 'text/plain'
+        }, function() {
+            // error - call failed
+        }
+    );
+    
 ### onNewIntent ###
 Gets called when onNewIntent is called for the parent activity. Used in only certain launchModes. For example:
 
