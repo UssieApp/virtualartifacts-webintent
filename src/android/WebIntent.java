@@ -112,6 +112,20 @@ public class WebIntent extends CordovaPlugin {
                 //return new PluginResult(PluginResult.Status.OK, uri);
                 callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, uri));
                 return true;
+
+            } else if (action.equals("getType")) {
+                if (args.length() != 0) {
+                    //return new PluginResult(PluginResult.Status.INVALID_ACTION);
+                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.INVALID_ACTION));
+                    return false;
+                }
+
+                Intent i = ((CordovaActivity)this.cordova.getActivity()).getIntent();
+                String extraType = i.getType();
+                //return new PluginResult(PluginResult.Status.OK, extraType);
+                callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, extraType));
+                return true;
+
             } else if (action.equals("onNewIntent")) {
                 //save reference to the callback; will be called on "new intent" events
                 this.onNewIntentCallbackContext = callbackContext;
