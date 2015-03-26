@@ -75,9 +75,14 @@ public class WebIntent extends CordovaPlugin {
                 }
                 Intent i = ((CordovaActivity)this.cordova.getActivity()).getIntent();
                 String extraName = args.getString(0);
-                //return new PluginResult(PluginResult.Status.OK, i.hasExtra(extraName));
-                callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, i.hasExtra(extraName)));
-                return true;
+                if (i.hasExtra(extraName)) {
+                    //return new PluginResult(PluginResult.Status.OK, i.hasExtra(extraName));
+                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, i.hasExtra(extraName)));
+                    return true;
+                } else {
+                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR));
+                    return false;
+                }
 
             } else if (action.equals("getExtra")) {
                 if (args.length() != 1) {
